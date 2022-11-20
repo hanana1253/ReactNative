@@ -37,6 +37,30 @@ let styles = {
 
 @react.component
 let make = () => {
+  let (enteredNumber, setEnteredNumber) = React.Uncurried.useState(_ => "")
+
+  let numberInputHandler = enteredText => {
+    setEnteredNumber(._ => enteredText)
+  }
+
+  let resetInputHandler = _ => {
+    setEnteredNumber(._ => "")
+  }
+
+  let confirmInputHandler = _ => {
+    let chosenNumber = enteredNumber->Belt.Int.fromString
+    switch chosenNumber {
+    | Some(number) if number > 0 && number <= 99 => "Valid number"->Js.log
+    | _ =>
+      Alert.alert(
+        ~title="Invalid number!",
+        ~message="Number has to be a number between 1 and 99.",
+        ~buttons=[Alert.button(~text="Okay", ~style=#default, ~onPress=resetInputHandler, ())],
+        (),
+      )
+    }
+  }
+
   <View style={styles["inputContainer"]}>
     <TextInput
       style={styles["numberInput"]}
@@ -44,13 +68,15 @@ let make = () => {
       keyboardType=#numberPad
       autoCapitalize=#none
       autoCorrect=false
+      value=enteredNumber
+      onChangeText=numberInputHandler
     />
     <View style={styles["buttonsContainer"]}>
       <View style={styles["buttonContainer"]}>
-        <PrimaryButton label="Reset" />
+        <PrimaryButton onPress=resetInputHandler label="Reset" />
       </View>
       <View style={styles["buttonContainer"]}>
-        <PrimaryButton label="Confirm" />
+        <PrimaryButton onPress=confirmInputHandler label="Confirm" />
       </View>
     </View>
   </View>

@@ -16,17 +16,14 @@ let styles = {
   })
 }
 @react.component
-let make = (~label) => {
-  let pressHandler = () => {
-    `pressed`->Js.log
-  }
+let make = (~label, ~onPress) => {
   <View style={styles["buttonOuterContainer"]}>
     <Pressable
       style={({pressed}) =>
         pressed
           ? [styles["pressed"], styles["buttonInnerContainer"]]->Style.array
           : styles["buttonInnerContainer"]}
-      onPress={_ => pressHandler()}
+      onPress
       android_ripple={Pressable.rippleConfig(~color="#640233", ())}>
       {_ => <Text style={styles["buttonText"]}> {label->React.string} </Text>}
     </Pressable>
