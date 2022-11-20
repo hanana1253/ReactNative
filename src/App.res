@@ -1,6 +1,5 @@
 open ReactNative
 
-
 let styles = StyleSheet.create({
   open Style
   {
@@ -10,8 +9,7 @@ let styles = StyleSheet.create({
 
 @react.component
 let app = () => {
-
-  <View style={styles["rootScreen"]}>
+  <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles["rootScreen"]}>
     <StartGame />
-  </View>
+  </LinearGradient>
 }
