@@ -36,7 +36,7 @@ let styles = {
 }
 
 @react.component
-let make = () => {
+let make = (~onPickNumber) => {
   let (enteredNumber, setEnteredNumber) = React.Uncurried.useState(_ => "")
 
   let numberInputHandler = enteredText => {
@@ -50,7 +50,7 @@ let make = () => {
   let confirmInputHandler = _ => {
     let chosenNumber = enteredNumber->Belt.Int.fromString
     switch chosenNumber {
-    | Some(number) if number > 0 && number <= 99 => "Valid number"->Js.log
+    | Some(number) if number > 0 && number <= 99 => onPickNumber(Some(number))
     | _ =>
       Alert.alert(
         ~title="Invalid number!",
