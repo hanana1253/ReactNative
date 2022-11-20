@@ -1,4 +1,5 @@
 open ReactNative
+open Colors
 
 let styles = {
   open Style
@@ -7,7 +8,7 @@ let styles = {
       ~margin=100.->dp,
       ~marginHorizontal=24.->dp,
       ~padding=16.->dp,
-      ~backgroundColor="#3b021f",
+      ~backgroundColor=colors["primary800"],
       ~borderRadius=8.,
       ~elevation=4.,
       ~shadowColor="black",
@@ -24,9 +25,9 @@ let styles = {
       ~height=50.->dp,
       ~width=50.->dp,
       ~fontSize=32.,
-      ~borderBottomColor="#ddb52f",
+      ~borderBottomColor=colors["accent500"],
       ~borderBottomWidth=2.,
-      ~color="#ddb52f",
+      ~color=colors["accent500"],
       ~marginVertical=8.->dp,
       ~fontWeight=#_700,
       ~textAlign=#center,
@@ -73,10 +74,10 @@ let make = (~onPickNumber) => {
     />
     <View style={styles["buttonsContainer"]}>
       <View style={styles["buttonContainer"]}>
-        <PrimaryButton onPress=resetInputHandler label="Reset" />
+        <PrimaryButton onPress=resetInputHandler> {"Reset"->React.string} </PrimaryButton>
       </View>
       <View style={styles["buttonContainer"]}>
-        <PrimaryButton onPress=confirmInputHandler label="Confirm" />
+        <PrimaryButton onPress=confirmInputHandler> {"Confirm"->React.string} </PrimaryButton>
       </View>
     </View>
   </View>

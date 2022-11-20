@@ -5,7 +5,7 @@ let styles = {
   StyleSheet.create({
     "buttonOuterContainer": viewStyle(~borderRadius=28., ~margin=4.->dp, ~overflow=#hidden, ()),
     "buttonInnerContainer": viewStyle(
-      ~backgroundColor="#72063c",
+      ~backgroundColor=Colors.colors["primary600"],
       ~paddingVertical=8.->dp,
       ~paddingHorizontal=16.->dp,
       ~elevation=2.,
@@ -16,7 +16,7 @@ let styles = {
   })
 }
 @react.component
-let make = (~label, ~onPress) => {
+let make = (~children, ~onPress) => {
   <View style={styles["buttonOuterContainer"]}>
     <Pressable
       style={({pressed}) =>
@@ -24,8 +24,8 @@ let make = (~label, ~onPress) => {
           ? [styles["pressed"], styles["buttonInnerContainer"]]->Style.array
           : styles["buttonInnerContainer"]}
       onPress
-      android_ripple={Pressable.rippleConfig(~color="#640233", ())}>
-      {_ => <Text style={styles["buttonText"]}> {label->React.string} </Text>}
+      android_ripple={Pressable.rippleConfig(~color=Colors.colors["primary500"], ())}>
+      {_ => <Text style={styles["buttonText"]}> {children} </Text>}
     </Pressable>
   </View>
 }

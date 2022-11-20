@@ -1,4 +1,5 @@
 open ReactNative
+open Colors
 
 let styles = StyleSheet.create({
   open Style
@@ -12,7 +13,7 @@ let styles = StyleSheet.create({
 let app = () => {
   let (userNumber, setUserNumber) = React.Uncurried.useState(_ => None)
   let pickedNumberHandler = pickedNumber => setUserNumber(._ => pickedNumber)
-  <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles["rootScreen"]}>
+  <LinearGradient colors={[colors["primary700"], colors["accent500"]]} style={styles["rootScreen"]}>
     <ImageBackground
       source={Image.Source.fromRequired(Packager.require("../assets/images/background.png"))}
       resizeMode=#cover
