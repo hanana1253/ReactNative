@@ -18,9 +18,11 @@ let app = () => {
       resizeMode=#cover
       style={styles["rootScreen"]}
       imageStyle={styles["backgroundImage"]}>
-      {userNumber->Belt.Option.isSome
-        ? <GameScreen />
-        : <StartGameScreen onPickNumber=pickedNumberHandler />}
+      <SafeAreaView style={styles["rootScreen"]}>
+        {userNumber->Belt.Option.isSome
+          ? <GameScreen />
+          : <StartGameScreen onPickNumber=pickedNumberHandler />}
+      </SafeAreaView>
     </ImageBackground>
   </LinearGradient>
 }
